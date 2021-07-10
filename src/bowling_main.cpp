@@ -52,6 +52,44 @@ int main(void)
     game.roll(10);
 
     game.showScore();   /* expect: 300 */
+    game.NextGame();
+
+    game.roll(10);  /*1F: 30*/
+    game.roll(10);  /*2F: 30*/
+    game.roll(10);  /*3F: 30*/
+    game.roll(10);  /*4F: 30*/
+    game.roll(10);  /*5F: 30*/
+    game.roll(10);  /*6F: 30*/
+    game.roll(10);  /*7F: 27*/
+    game.roll(10);  /*8F: 20*/
+    game.roll(7);   
+    game.roll(3);   /*9F: 14*/
+    game.roll(4);
+    game.roll(5);   /*10F: 9*/
+    /* garbage */
+    game.roll(1);
+    game.roll(2);
+    game.roll(3);
+
+    game.showScore();   /* expect: 250 */
+    game.NextGame();
+
+    game.roll(1);
+    game.roll(2);   /*1F: 3*/
+    game.roll(3);
+    game.roll(4);   /*2F: 7*/
+    game.roll(5);
+    game.roll(5);   /*3F: 16*/
+    game.roll(6);   /*4F(1/2): 6*/
+    game.showScore();   /* expect: 32 */
+    game.roll(4);   /*4F: 10+10*/
+    game.roll(10);  /*5F: 20+2*/
+    game.roll(10);  /*6F: 10+2+3*/
+    game.showScore();   /* expect: 76 */
+    game.roll(2);   /*7F(1/2): 2*/
+    game.showScore();   /* expect: 82 */
+    game.roll(3);   /*7F: 5*/
+    game.showScore();   /* expect: 88 */
 
     return 0;
 }

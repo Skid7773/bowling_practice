@@ -49,7 +49,7 @@ Game::CheckFlameResultType(unsigned int nFirst, unsigned int nSecond)
     return eType;
 }
 unsigned int
-Game::CalcOneFlameScore(unsigned int pstCurrentSet[4], unsigned int *pScoreResult)
+Game::CalcOneFlameScore(unsigned int pstCurrentSet[3], unsigned int *pScoreResult)
 {
     unsigned int nScore = 0;
     unsigned int nMove = 0;
@@ -100,10 +100,13 @@ Game::CalcLastFlameScore(unsigned int pstCurrentSet[3], unsigned int *pScoreResu
     switch(eType){
     case Game::RESULT_INVALID:
         /* 入力漏れの0が[0]と[1]の間にあったものとして計算しておく */
+        nScore = pstCurrentSet[0];
+        nMove = 1;
+        break;
+    case Game::RESULT_LAME:
         nScore = pstCurrentSet[0] + pstCurrentSet[1];
         nMove = 2;
         break;
-    case Game::RESULT_LAME:
     case Game::RESULT_SPARE:
         nScore = pstCurrentSet[0] + pstCurrentSet[1] + pstCurrentSet[2];
         nMove = 3;
@@ -138,11 +141,11 @@ Game::score(void)
     unsigned int i = 0;
     unsigned int nScoreSum = 0;
 
-    while( (nFlameCnt <= MAX_FLAMENUM) && (i <= (m_nRollCnt-3)) ){
+    while( (nFlameCnt <= MAX_FLAMENUM) && (i <= (MAX_ROLL_CNT-3)) ){
         unsigned int nTempScore = 0;
         unsigned int nMove = 0;
 
-        if((MAX_FLAMENUM == nFlameCnt) || (i == (m_nRollCnt-3))){
+        if(MAX_FLAMENUM == nFlameCnt){
             nMove = CalcLastFlameScore(&(m_tblKnockedDown[i]), &nTempScore);
         }
         else{

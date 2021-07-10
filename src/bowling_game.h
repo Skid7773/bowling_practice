@@ -19,7 +19,7 @@ private:
     unsigned int   m_tblKnockedDown[MAX_ROLL_CNT];
 
     Game::FLAME_RESULT_TYPE CheckFlameResultType(unsigned int nFirst, unsigned int nSecond);
-    unsigned int CalcOneFlameScore(unsigned int pstCurrentSet[4], unsigned int *pScoreResult);
+    unsigned int CalcOneFlameScore(unsigned int pstCurrentSet[3], unsigned int *pScoreResult);
     unsigned int CalcLastFlameScore(unsigned int pstCurrentSet[3], unsigned int *pScoreResult);
 
 public:
